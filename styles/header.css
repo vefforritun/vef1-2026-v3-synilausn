@@ -1,0 +1,17 @@
+header {
+  grid-area: header;
+  padding-top: var(--spacing);
+  padding-right: var(--offset);
+  padding-left: var(--offset);
+  text-align: center;
+}
+
+header h1 {
+  font-size: var(--font-size-header);
+}
+
+@media (width >= 700px) {
+  header h1 {
+    font-size: var(--font-size-header-large);
+  }
+}

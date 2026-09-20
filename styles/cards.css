@@ -1,0 +1,41 @@
+/**
+ * Sérstaklega uppsett grid hér fyrir kort.
+ * Í grunninn fyllir hvert kort upp í alla (12) dálka.
+ * Í stærri skjám tekur hvort kort 6 dálka.
+ */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(var(--columns), 1fr);
+  gap: var(--spacing-double);
+}
+
+/**
+ * Notum subgrid hér til að láta fyrirsögn, mynd, texta og takka *alltaf*
+ * raðast saman.
+ */
+.card {
+  display: grid;
+  grid-template-rows: subgrid;
+  grid-row: span 4;
+  grid-column: span 12;
+  gap: var(--spacing-double);
+}
+
+/* Skiptum yfir í 6 dálka þegar komið yfir 700px breiðan skjá */
+@media (width >= 700px) {
+  .card {
+    grid-column: span 6;
+  }
+}
+
+.card h2 {
+  font-size: var(--font-size-card-title);
+}
+
+.card .image img {
+  display: block;
+  width: 100%;
+  height: var(--height-card-image);
+  object-fit: cover;
+  object-position: 50% 50%;
+}

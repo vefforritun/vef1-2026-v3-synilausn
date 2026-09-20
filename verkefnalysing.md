@@ -1,17 +1,17 @@
-# Vefforritun 1, 2026: Verkefni 2, CSS
+# Vefforritun 1, 2026: Verkefni 3, Skalanlegt CSS og tæki & tól
 
 Útgáfa 0.1.
 
 ## Markmið
 
-- Tengja CSS við HTML.
-- Aðlaganir á HTML fyrir CSS.
-- Notkun á grunn CSS með box model, visual formatting model og letri og litum.
-- Nota flexbox.
+- Útfæra skalanlegan (e. responsive) vef.
+- Nota CSS custom properties (breytur) fyrir allar stillingar í útliti.
+- Nota CSS grid til að stýra útliti.
+- Setja upp Node.js og NPM og nota tól þaðan: Parcel, Prettier og Stylelint.
 
 ## Verkefni 1–3
 
-Í verkefnum 1, 2 og 3 munum við vinna áfram með sama verkefni og byggja ofan á það:
+Í verkefnum 1, 2 og 3 vinnum við áfram með sama verkefni og byggjum ofan á það:
 
 - [Verkefni 1](https://github.com/vefforritun/vef1-2026-v1) skilgreinir HTML og síður.
 - [Verkefni 2](https://github.com/vefforritun/vef1-2026-v2) setur upp útlit með CSS.
@@ -19,190 +19,202 @@
 
 ## Lýsing
 
-Verkefnið er framhald af [verkefni 1](https://github.com/vefforritun/vef1-2026-v1), nýtir þær síður, gögn og myndir sem þar voru settar upp og fylgir þeirri verkefnalýsingu áfram en nú bætum við útliti við með CSS.
+Verkefnið er framhald af [verkefni 2](https://github.com/vefforritun/vef1-2026-v2), nýtir þær síður, gögn, myndir og það útlit sem þar var sett upp og fylgir þeirri verkefnalýsingu áfram.
 
-Sömu fjórar síður og í verkefni 1 skulu fá útlit:
+Þið megið nota ykkar eigin lausn úr verkefni 2 sem grunn. Einnig er leyfilegt að nota [sýnilausn að verkefni 2](https://github.com/vefforritun/vef1-2026-v2-synilausn) sem grunn.
+
+Vinnum áfram með sömu fjórar síður:
 
 - Forsíða ferðaþjónustufyrirtækis.
 - Um ferðaþjónustufyrirtækið.
 - Yfirlit yfir ferðir.
 - Skráning í ferð.
 
-Notið ykkar eigin lausn úr verkefni 1 sem grunn. Leyfilegt er að nota [sýnilausn að verkefni 1](https://github.com/vefforritun/vef1-2026-v1-synilausn) sem gefin verður út föstudaginn 11. september.
+Í verkefni 2 var vefurinn ekki skalanlegur, allt CSS í einni skrá og gildi margtekin, nú lögum við þetta ásamt fleiru!
 
-Allt útlitið skal vera í gefinni `./styles.css` og **allar** HTML skrár skulu vísa í nákvæmlega þá skrá.
-
-Bæta þarf við auka elementum við lausn/sýnilausn til að geta náð fram útliti, sjá grunn sem gefinn er fyrir HTML í `index.html`.
-
-Þar sem allt útlit skal útfæra í einni CSS skrá, skal huga að cascade og erfðum, þó er fullkomlega eðlilegt að endurtaka eigindi, en t.d. fyrir málsgreinar (`<p>`) þarf aðeins að taka fram einu sinni hvert margin þeirra er.
+Allt sem gildir í verkefnum 1 og 2 gildir áfram nema annað sé tekið fram.
 
 ## Grunnur
 
-Gefinn er HTML grunnur í `index.html` sem byggir á sýnilausn.
+Gefnar eru eftirfarandi skrár sem skulu notaðar:
 
-Gefið er `styles.css` skjal með grunn að lausn og athugasemdum.
-
-Almennt skal gilda:
-
-- Nota skal gefið „reset“ og `box-sizing` breytingu (merkt sérstaklega), það má ekki fjarlægja.
-- Nota skal leturgerðina [Inter frá Google fonts](https://fonts.google.com/specimen/Inter), variable útgáfu.
-  - Sækja skal leturgerðirnar (download) og nota `@font-face` í CSS, _ekki_ skal vísa í Google fonts með `<link>` í HTML.
-- Gefin er stærð á letri sem `16px` (sem merkir að `1rem == 16px`), því skal ekki breyta.
-- Í lýsingu á útliti er eitt bil skilgreint sem `10px`, tvö bil eru þá `20px` og svo framvegis.
-- Gefin er hjálparklasi `.sr-only` sem skal setja á `Beint í efni` tengil og hugsanlega annað efni sem eingöngu er fyrir skjálesara.
-- Aðeins skal nota `px` í grunnleturstærð og á `border`, `margin`, `padding` og `gap` skilgreiningar, annars skal nota hlutfallslegar einingar (`em`, `rem`, eða `%`)
-- Allt efni (málsgreinar, myndir, form element) skal hafa að minnsta kosti eitt bil fyrir neðan sig.
-  - Á fyrirmyndum gæti þetta verið óljóst og þarf ekki að vera nákvæmlega eins og á fyrirmyndum. Í nákvæmri lýsingu á útliti kemur fram ef vikið er frá þessu.
-- Litir:
-  - Bakgrunnur: `#ffeedd`.
-  - Texti: `#000000`.
-  - Border: `#000000`.
-  - Takkar: bakgrununnur `#996644`, texti `#ffeedd`.
-  - Bakgrunnur í fæti: `#996644`.
-  - Önnur hver lína í töflu: `#eebb99`.
-- CSS skal vera án villna og **viðvarana** þegar keyrt í gegnum [CSS validator](https://jigsaw.w3.org/css-validator/), einnig hægt að keyra gegnum W3C Validator extension.
-
-Allt sem gildir í verkefni 1 gildir áfram í þessu verkefni.
-
-## Útlit
-
-Fyrirmynd að útliti er lýst hér að neðan ásamt skjáskoti úr sýnilausn. Öll skjáskot eru tekin í `1100px` breiðum vafra, ekki þarf að huga að skalanleika (síðan þarf ekki að líta vel út undir þeirri breidd).
-
-### Haus síðu
-
-Haus (`<header>`) skal vera með heiti síðu miðjað, leturstærð `52px` skilgreind í `rem`.
-
-### Valmynd
-
-- Valmynd er undir haus og fylgir þegar skrunað (scroll) er niður síðu, nær yfir alla breidd skjásins.
-- Ekkert skal vera sýnilegt „undir“ valmynd þegar skrunað er.
-- Leturgerð skal vera Atkinson Hyperlegible, leturstærð `24px` skilgreind í `rem`.
-- Efni í valmynd skal miðjað með flexbox, ekki `text-align` eða `inline-block`.
-- Þegar tengill í valmynd er valinn með tab (`:focus`) eða sveimað er yfir (`:hover`) skal setja undirstrik undir viðkomandi tengil.
-- Núverandi síða er merkt með `<strong>` í stað tengils og skal hafa undirlínu.
-
-### Meginmál
-
-Allt efni á að vera að hámarki `1100px` breitt og miðjað í vafra, auka pláss vinstra og hægra megin skal sjálfkrafa vera útdeilt.
-
-### Fótur
-
-Bakgrunnslitur og border skal ná yfir alla breidd skjásins. Efni í fæti skal vera miðjað og að hámarki `800px` breitt.
-
-Efni í fæti (`Opnunartímar`, `Hafðu samband`, `Samfélagsmiðlar`) skal skipt í þrennt með bili á milli:
-
-- Bakgrunnur skal vera með áherslulit (accent), t.d. `#996644`.
-- Bil frá efni skal vera á allar hliðar innan fótar, tvö bil.
-- Notið flexbox til að ná þessu fram.
-
-### Takkar
-
-Sama útlit skal vera á „tökkum“ á forsíðu og skráningarsíðu (athugið að þó um takka _útlit_ sé að ræða skal huga að því hvaða element eiga við merkingarfræðilega, t.d. er senditakki í formi `<button>`):
-
-- Bil innan takka (padding) skal vera eitt bil á hliðum og hálft bil fyrir ofan og neðan.
-- Takki skal vera með svartan bakgrunn og hvítan texta.
-- Takki skal hafa `5px` border radíus.
-- Leturstærð skal vera sama og á meginmáli (16px í rem).
-
-### Forsíða
-
-Efni á forsíðu skal setja upp í jafn breið kort (cards) þar sem:
-
-- Fyrst er fyrirsögn, stærð `32px` skilgreint í `rem`, feitletrað, vinstrasett.
-- Síðan kemur mynd, fyllir upp í lárétt pláss, hæð `300px`, passið upp á að myndin haldi hlutföllum sínum (aspect ratio), hún skal fylla upp í pláss (`cover`).
-  - Ef engin mynd þá kemur textinn í beinu framhaldi.
-- Texti kemur síðan undir mynd, vinstrasett.
-- Að lokum kemur takki neðst, vinstrasettur.
-- Tvö bil á milli alls.
-
-[Skjáskot úr sýnilausn](./fyrirmynd/forsida.png).
-
-### Um síða
-
-- Undir meginfyrirsögnum í texta skulu vera tvö bil.
-- Eftir undirfyrirsagnir í texta skal vera eitt bil.
-- Eftir málsgreinum skulu vera þrjú bil.
-- Mynd skal fylla upp í lárétt pláss.
-
-[Skjáskot úr sýnilausn](./fyrirmynd/um.png) og þegar [búið að skrolla til að sýna valmynd](./fyrirmynd/um-skroll.png).
-
-### Ferðasíða
-
-- Fyrirsagnir í töflu skulu vera feitletraðar, allt efni vinstrijafnað.
-- Önnur hver röð í töflunni skal hafa `#eebb99` sem bakgrunnslit.
-
-[Skjáskot úr sýnilausn](./fyrirmynd/ferdir.png).
-
-### Skráningarsíða
-
-- Hvert svæði í formi skal hafa fyrirsögn sem er `24px` skilgreint í `rem`, feitletrað, vinstrasett.
-- Svæði skal fylla út í helming af breidd skjásins.
-- Milli svæða skal vera þrjú bil.
-- Milli reita skal vera tvö bil.
-
-[Skjáskot úr sýnilausn](./fyrirmynd/skraning.png).
+- HTML skrár úr verkefni 2.
+- CSS skrár sem skal nota, þið þurfið að breyta þeim flestum, sjá nánar í athugasemdum í hverri skrá:
+  - `styles.css`, inngangsskráin í verkefnið, raðar upp öðrum skrám.
+  - `styles/`, mappa sem inniheldur skrár sem `styles.css` sækir.
+- `stylelint.config.mjs`, stillingar fyrir Stylelint, sjá nánar í umfjöllun um Stylelint.
+- `.gitignore`, `.stylelintignore`, `.prettierignore`, skrár sem hunsa ákveðnar skrár og möppur í verkefninu.
+  - `.gitignore` hunsar skrár sem við viljum ekki að fari í Git.
+  - `.stylelintignore` hunsar skrár sem við viljum ekki að Stylelint fari yfir.
+  - `.prettierignore` hunsar skrár sem við viljum ekki að Prettier fari yfir og breyti.
 
 ## Takmarkanir
 
-Aðeins skal nota eftirfarandi eigindi, og ef tekið fram, viðeigandi gildi:
+Leyfilegt er að nota allt CSS.
 
-- `@font-face` til að fella inn leturgerðir
-- `background` og nánari skilgreiningar
-- `border` og nánari skilgreiningar
-- `border-spacing: 0;` (fyrir töflur)
-- `box-sizing` (en þó bara það sem gefið er)
-- `color`
-- `display: flex;`
-  - önnur flex eigindi og `gap`
-  - ekki ætti að nota önnur gildi fyrir `display`, sjá að neðan
-- `font-family`
-  - `src` til að vísa í skrár fyrir leturgerðir
-- `font-style`
-- `font-size`
-- `font-weight`
-- `list-style: none;`
-- `margin-bottom` og `margin-top`
-  - _ekki_ ætti að nota `margin-left` og `margin-right` heldur flexbox virkni til að búa til pláss á milli boxa
-- `padding` og nánari skilgreiningar
-- `width`, `height`, `min-width`, `max-width`, `min-height`
-- `position`
-- `left`, `right`, `top`, `bottom`
-- `text-align`
-- `text-decoration`
-- Þau eigindi notuð í `.sr-only` og ekki tiltekin hér ætti ekki að nota í annað.
+## Verkefnið
 
-Nota ætti `type` og `class` selectora og í einhverju tilfelli pseudo-selectora. Ekki ætti að nota `id` selectora eða universal selector (`*`) fyrir utan það sem þegar er gefið.
+### CSS breytur
 
-Ekki skal nota önnur `display` gildi en `display: flex;`, `display: block` og `display: inline-block` má þó nota í sértækum tilfellum. Ekki nota `text-align` til að miðja efni. Ekki nota `float`, `clear` eða `vertical-align`.
+Allar stillingar verkefnisins skulu skilgreindar sem CSS custom properties í `:root` í `styles/config.css` og sóttar með `var()` þar sem þær eru notaðar. Notið það sem gefið er, hugsanlega þurfið þið að bæta við fleirum.
 
-## Netlify
+Ekkert gildi fyrir lit, bil, leturstærð, leturgerð, breidd, `border` eða `border-radius` á að vera skrifað beint annars staðar í verkefninu. Gildi sem eru gefin mega vera skrifuð beint inn.
 
-Setja skal upp verkefni á Netlify með því að hlaða upp skrám með „manual deploy“ _eða_ tengja GitHub repo. Einnig er leyfilegt að nota aðra hýsingu en heyrið í kennara varðandi það.
+### CSS skipulag og skipting í skrár
+
+Skipta skal CSS upp í að minnsta kosti þær skrár undir `styles/` sem gefnar eru. `styles.css` skal ekki innihalda neitt nema `@import` á þessar skrár.
+
+Athugið að röðin á `@import` skilgreiningum skiptir máli upp á flóðið (e. cascade). Sjá athugasemdir í skrám.
+
+Ef live server í vscode er notaður mun þetta virka og vera uppfært sjálfkrafa en fyrir skil þarf að setja upp `Parcel`, sjá í umfjöllun um tæki og tól.
+
+### Grind uppsetning
+
+Nota skal CSS grid til að setja upp grunn skipulag síðu lóðrétt og lárétt þar sem flexbox var notað í verkefni 2.
+
+Lóðrétt skal setja upp skipulag síðu með nefndum svæðum. Lárétt grind síðunnar skal vera í grunninn tólf dálka og takmarkað við hámarksbreidd skilgreinda með `--max-width`. Sjá nánar í `styles/layout.css`.
+
+Sérstaklega skal setja upp dálka fyrir:
+
+- Kort á forsíðu
+- Efni í fæti
+
+Sjá nánar í `styles/cards.css` og `styles/footer.css`.
+
+### Skalanleiki
+
+Síðan skal vera skalanleg frá `400px` og upp að hámarksbreidd skilgreind með `--max-width`. Eftir hámarksbreidd skal efnið vera miðjað.
+
+Vinna skal efnið „mobile first“ þannig að í grunninn eru stílar fyrir minnstu skjái, síðan eru notuð media queries til að bæta við stílum fyrir stærri skjái.
+
+Í sýnilausn eru brotpunktar:
+
+- Frá og með `500px`, allt undir þessu er „mobile“
+- Frá og með `700px`, hér breytast kort á forsíðu og í fæti
+
+Þegar farið er úr „mobile“ skal leturstærð stækka í haus og valmynd úr, sjá athugasemdir í `styles/config.css`.
+
+Þegar farið er yfir `700px` skulu (sjá nánar á skjámyndum):
+
+- kort á forsíðu skiptast upp,
+- dálkar í fæti skiptast upp,
+- form dálkar skiptast upp.
+
+Fyrirmyndir að útliti eru í `fyrirmynd/` möppu. Heiti hvers skjás er með breidd sem skjáskotið er tekið í, t.d. `forsida-500px.png` er forsíða tekin í `500px` breiðum vafra.
+
+Ekki skal vera neitt lárétt skrun (horizontal scroll) á síðunni sjálfri í neinni skjástærð.
+
+### Tæki og tól
+
+Til þess að geta notað þessi tól þarf að [setja upp Node.js](https://nodejs.org/en/download). Eftir að þið hafið keyrt uppsetningarforritið getið þið opnað Command prompt/terminal/skel og keyrt:
+
+```bash
+> node -v
+v24.21.0 # eða sú útgáfa sem þið sóttuð
+> npm -v
+11.19.0 # eða álíka
+```
+
+Ef þið fáið þetta ekki upp, prófið að endurræsa. Annars fáið aðstoð í dæmatímum, í fyrirlestri, tölvupósti eða á Slack.
+
+Fyrst þarf að búa til `package.json` með því að keyra `npm init` í verkefnamöppu, við gerum þetta saman í fyrirlestri
+
+#### Parcel
+
+Setja skal upp [Parcel](https://parceljs.org/). Parcel fylgir `<link>`, `<img>` og `@import` út frá HTML skránum.
+
+Setja þarf upp `dev` og `build` script í `package.json`, [sjá skjölun](https://parceljs.org/getting-started/webapp/#package-scripts). Það gæti verið ráð að setja `dev` script með `--no-cache` og `--lazy` valkostum til að forðast vandamál með cache:
+
+```text
+"dev": "parcel index.html 'sidur/*.html' --lazy --no-cache",
+"build": "parcel build index.html 'sidur/*.html'"
+```
+
+#### Prettier
+
+Setja skal upp [Prettier](https://prettier.io/) og `format` script sem keyrir prettier á bæði HTML og CSS:
+
+```text
+"format": "prettier '**/*.{css,html}' --write"
+```
+
+Gefið er `.prettierignore` skjal sem hunsar `dist/` og `package-lock.json`.
+
+#### Stylelint
+
+Setja skal upp [Stylelint](https://stylelint.io/) með `npm create stylelint@latest` og síðan bæta við [`stylelint-config-standard`](https://github.com/stylelint/stylelint-config-standard) og [`stylelint-config-recess-order`](https://github.com/stormwarning/stylelint-config-recess-order).
+
+`stylelint.config.mjs` skrá er gefin og inniheldur stillingar þannig að bæði config standard og recess order sé virkt. Einnig er dæmi um hvernig regla er yfirskrifuð í skránni.
+
+```js
+/** @type {import("stylelint").Config} */
+export default {
+  extends: ['stylelint-config-standard', 'stylelint-config-recess-order'],
+  rules: {
+    // Litir eins og í verkefnalýsingu, t.d. #996644 en ekki #964.
+    'color-hex-length': null,
+  },
+};
+```
+
+Þegar skipunin `npm run lint` er keyrð skal keyra Stylelint með þessum reglum og **engar villur** eiga að koma fram.
+
+Athugið að hægt er að keyra `stylelint` með `--fix` til að laga margar villur sjálfkrafa, t.d. röðun á eigindum, þetta væri hægt að setja upp sem `npm script`.
+
+Gefið er `.stylelintrc` skjal sem inniheldur hunsar `dist/` möppu.
+
+## GitHub og Netlify uppsetning
+
+Setja skal verkefnið upp á GitHub og skila með slóð á repo.
+
+Tengja skal GitHub við Netlify þannig að hver breyting í GitHub keyri inn nýja útgáfu á Netlify, farið verður yfir þetta í tíma.
+
+Gefið er `.gitignore` skjal sem verður að nota, við viljum ekki að þær skrár og möppur sem eru tilgreindar þar fari inn á GitHub.
 
 ## Mat
 
-- 20% – Snyrtilega uppsett og gilt CSS.
-- 15% – Grunn fyrirmæli og leyfileg eigindi notuð
-- 10% – Haus og valmynd
-- 10% – Fótur
-- 10% – Forsíða
-- 10% – Efnissíða
-- 10% – Ferðasíða
-- 10% – Skráningarsíða
-- 5% – Uppsett á netlify
+- 10% — CSS breytur
+  - 6 Gildi notuð þar sem við á
+  - 4 Bætt við þar sem við á (aðrir litir, border, hæð á mynd)
+- 10% — CSS skipulag og skipting í skrár
+  - 6 Fyllt út á viðeigandi stöðum í gefnar skrár
+  - 4 Fyllt út á viðeigandi stöðum í nýjum skrám (content.css fyrir texta og töflu síðu; eða text.css og table.css)
+- 20% — Grind uppsetning
+  - 8 Grind uppsett fyrir layout og 12 dálkar með offset og max-width takmörkunum
+  - 6 Grind uppsett fyrir cards, gefa plús ef subgrid notað
+  - 6 Grind uppsett fyrir fót
+- 20% — Skalanleiki
+  - 8 Almennt skalanlegt, media queries samræmi (sömu breakpoints), myndir skalast, texti skalast
+  - 4 Leturstærðir skiptast með skjástærð
+  - 4 Kort og fótur skalast skv forskrift
+  - 4 Dálkar í formi skalast skv forskrift
+- 15% — Tæki og tól
+  - 3 package.json rétt ásamt pökkum sem setja átti upp, node_modules ekki skilað
+  - 3 Parcel uppsett
+  - 3 Prettier uppsett
+  - 3 Stylelint uppsett
+  - 3 Scripts fyrir dev, build, lint
+- 10% — Stylelint án villna
+  - 10 Stylelint án villna, gefa -1-2 per villu nema MJÖG margar eins
+- 15% — GitHub og Netlify uppsetning
+  - 10 Uppsett á GitHub og repo skilað
+  - 5 Netlify uppsett og verkefni keyrandi
 
 ## Sett fyrir
 
-Verkefni sett fyrir í fyrirlestri mánudaginn 31. ágúst 2026.
+Verkefni sett fyrir í fyrirlestri mánudaginn 21. september 2026.
 
 ## Skil
 
-Skila skal í Canvas, seinasta lagi fyrir lok dags fimmtudaginn 17. september 2026.
+Skila skal í Canvas, seinasta lagi fyrir lok dags fimmtudaginn 1. október 2026.
 
 Skilaboð skulu innihalda bæði:
 
-- zip skrá með öllum skrám og möppum í lausn á verkefni (eða hlekkur á GitHub).
-- slóð á verkefni keyrandi á Netlify, sett sem athugasemd við skil á Canvas.
+- Slóð á GitHub repo fyrir verkefnið. Dæmatímakennurum skal hafa verið boðið í repo, notendanöfn þeirra eru:
+  - `AsdisVal`
+  - `kristinfrida`
+  - `osk`
+- Slóð á verkefni keyrandi á Netlify, sett sem athugasemd við skil á Canvas.
 
 Athugið að það er **ekki nóg** að eingöngu setja athugasemd, skila þarf verkefni sérstaklega. Verkefnum sem ekki er skilað fá ekki einkunn.
 
@@ -220,7 +232,7 @@ Sett verða fyrir tvö hópverkefni þar sem hvort um sig gildir 5%, samtals 10%
 
 ---
 
-Nýjustu útgáfu af verkefni má [nálgast á GitHub](https://github.com/vefforritun/vef1-2026-v2).
+Nýjustu útgáfu af verkefni má [nálgast á GitHub](https://github.com/vefforritun/vef1-2026-v3).
 
 ## Útgáfusaga
 

@@ -1,0 +1,35 @@
+footer {
+  display: flex;
+  grid-area: footer;
+  justify-content: center;
+  padding-top: var(--spacing-double);
+  padding-bottom: var(--spacing-double);
+  text-align: center;
+  background-color: var(--color-accent);
+  border-top: var(--border-width) solid var(--color-border);
+}
+
+/**
+ * Grid fyrir efni í fæti
+ */
+footer .content {
+  display: grid;
+  grid-template-columns: repeat(var(--columns), 1fr);
+  gap: var(--gutter);
+  width: var(--width-offset);
+  max-width: var(--max-width);
+}
+
+footer .content > section {
+  grid-column: span 12;
+}
+
+@media (width >= 700px) {
+  footer .content > section {
+    grid-column: span 4;
+  }
+}
+
+footer ul {
+  list-style: none;
+}

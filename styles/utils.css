@@ -1,0 +1,27 @@
+/**
+ * Hjálpar class sem felur sjónrænt það sem
+ * skjálesarar lesa.
+ */
+.sr-only:not(:focus, :active) {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  white-space: nowrap;
+  clip-path: inset(50%);
+}
+
+/**
+ * Almennt takka útlit, virkar bæði fyrir <a>
+ * og <button>.
+ */
+.button {
+  display: inline-block;
+  padding: calc(var(--spacing) / 2) var(--spacing);
+  font-size: 1rem;
+  color: var(--color-accent-contrast);
+  text-decoration: none;
+  background-color: var(--color-accent);
+  border: var(--border);
+  border-radius: var(--border-radius);
+}

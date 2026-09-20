@@ -1,0 +1,46 @@
+/** Textasíða **/
+
+.text h2 {
+  margin-bottom: var(--spacing-double);
+}
+
+.text h3 {
+  margin-bottom: var(--spacing);
+}
+
+.text p {
+  margin-bottom: var(--spacing-triple);
+}
+
+.text img {
+  width: 100%;
+}
+
+/** Töflur **/
+
+/**
+ * Wrapper utan um töflu sem lætur hana skrolla sjálfstætt.
+ */
+.table-wrapper {
+  margin-bottom: var(--spacing-double);
+  overflow-x: auto;
+}
+
+/**
+ * `min-width` tryggir að taflan þjappast ekki saman í algjöra klessu.
+ */
+table {
+  width: 100%;
+  min-width: var(--min-width-table);
+  border-spacing: 0;
+}
+
+table th,
+table td {
+  padding: var(--spacing);
+  text-align: left;
+}
+
+table tbody tr:nth-child(2n + 1) {
+  background-color: var(--color-table-stripe);
+}
